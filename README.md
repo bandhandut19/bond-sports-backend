@@ -1,2 +1,5 @@
 # bond-sports-backend
-Tec
+## Technology used
+ - typscript
+ - express js
+ - node js

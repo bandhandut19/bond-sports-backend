@@ -1,9 +1,9 @@
 type TProduct = {
   productName: string
   category: string
-  stockQuantity: number
+  // stockQuantity: number
   brand: string
-  rating: number
+  // rating: number
   productDescription: string
   price: number
   image: string

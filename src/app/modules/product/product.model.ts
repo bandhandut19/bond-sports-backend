@@ -10,18 +10,18 @@ const productSchema = new Schema<TProduct>({
     type: String,
     required: [true, 'Product category is required'],
   },
-  stockQuantity: {
-    type: Number,
-    required: [true, 'Stock quantity is required'],
-  },
+  // stockQuantity: {
+  //   type: Number,
+  //   required: [true, 'Stock quantity is required'],
+  // },
   brand: {
     type: String,
     required: [true, 'Brand Name is required'],
   },
-  rating: {
-    type: Number,
-    required: [true, 'Product Rating is required'],
-  },
+  // rating: {
+  //   type: Number,
+  //   required: [true, 'Product Rating is required'],
+  // },
   productDescription: {
     type: String,
     required: [true, 'Product Description is required'],

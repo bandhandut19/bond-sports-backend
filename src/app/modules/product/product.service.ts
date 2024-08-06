@@ -7,9 +7,16 @@ const createProductIntoDB = async (payload: TProduct) => {
 }
 const getAllProductFromDB = async (query: Record<string, unknown>) => {
   const userQuery = query.product as string | undefined
+  const categoryQuery = query.category as string | undefined
   if (userQuery) {
     const queryResult = await Product.find({
       productName: new RegExp(userQuery, 'i'), // 'i' makes it case-insensitive
+    })
+    return queryResult
+  }
+  if (categoryQuery) {
+    const queryResult = await Product.find({
+      category: new RegExp(categoryQuery, 'i'), // 'i' makes it case-insensitive
     })
     return queryResult
   } else {

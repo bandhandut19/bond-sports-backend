@@ -9,4 +9,10 @@ type TProduct = {
   image: string
 }
 
+export type TCartItemModify = {
+  id: string
+  quantity: number
+  stockQuantity: number
+}
+
 export default TProduct

@@ -1,4 +1,4 @@
-import TProduct from './product.interface'
+import TProduct, { TCartItemModify } from './product.interface'
 import { Product } from './product.model'
 
 const createProductIntoDB = async (payload: TProduct) => {
@@ -30,8 +30,19 @@ const getSingleProductFromDB = async (id: string) => {
   return result
 }
 
+const modifyProductQuantityIntoDB = async (cartItemInfo: TCartItemModify) => {
+  const updatedStockQuantity =
+    cartItemInfo.stockQuantity - cartItemInfo.quantity
+  const result = await Product.findByIdAndUpdate(
+    cartItemInfo.id,
+    { stockQuantity: updatedStockQuantity },
+    { new: true },
+  )
+  return result
+}
 export const ProductServices = {
   createProductIntoDB,
   getAllProductFromDB,
   getSingleProductFromDB,
+  modifyProductQuantityIntoDB,
 }

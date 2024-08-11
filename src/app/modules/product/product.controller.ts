@@ -54,8 +54,28 @@ const getSingleProduct = async (req: Request, res: Response) => {
   }
 }
 
+const modifyQuantity = async (req: Request, res: Response) => {
+  try {
+    const cartItemInfo = req.body
+    const result =
+      await ProductServices.modifyProductQuantityIntoDB(cartItemInfo)
+    res.status(httpStatus.OK).json({
+      success: true,
+      message: 'Quantity Modified Successfully',
+      data: result,
+    })
+  } catch (error) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      success: false,
+      message: 'Quantity Modification was Unsuccessful',
+      error: error,
+    })
+  }
+}
+
 export const ProductControllers = {
   createProduct,
   getAllProduct,
   getSingleProduct,
+  modifyQuantity,
 }

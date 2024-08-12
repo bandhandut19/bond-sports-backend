@@ -72,10 +72,31 @@ const modifyQuantity = async (req: Request, res: Response) => {
     })
   }
 }
-
+const updateProduct = async (req: Request, res: Response) => {
+  try {
+    const updatedProductInfo = req.body
+    const id = req.params.id
+    const result = await ProductServices.updateProductIntoDB(
+      updatedProductInfo,
+      id,
+    )
+    res.status(httpStatus.OK).json({
+      success: true,
+      message: 'Product Updated Successfully',
+      data: result,
+    })
+  } catch (error) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      success: false,
+      message: 'Product Updation was Unsuccessful',
+      error: error,
+    })
+  }
+}
 export const ProductControllers = {
   createProduct,
   getAllProduct,
   getSingleProduct,
   modifyQuantity,
+  updateProduct,
 }

@@ -40,9 +40,19 @@ const modifyProductQuantityIntoDB = async (cartItemInfo: TCartItemModify) => {
   )
   return result
 }
+const updateProductIntoDB = async (
+  updatedProductInfo: TProduct,
+  id: string,
+) => {
+  const result = await Product.findByIdAndUpdate(id, updatedProductInfo, {
+    new: true,
+  })
+  return result
+}
 export const ProductServices = {
   createProductIntoDB,
   getAllProductFromDB,
   getSingleProductFromDB,
   modifyProductQuantityIntoDB,
+  updateProductIntoDB,
 }

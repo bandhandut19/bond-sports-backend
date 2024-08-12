@@ -7,4 +7,5 @@ router.get('/', ProductControllers.getAllProduct)
 router.get('/:id', ProductControllers.getSingleProduct)
 router.patch('/modifyquantity', ProductControllers.modifyQuantity)
 router.patch('/updateproduct/:id', ProductControllers.updateProduct)
+router.delete('/:id', ProductControllers.deleteProduct)
 export const ProductRoutes = router

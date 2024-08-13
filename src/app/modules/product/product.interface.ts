@@ -8,7 +8,14 @@ type TProduct = {
   price: number
   image: string
 }
-
+export type Tfilter = {
+  category?: string
+  sort?: string
+  order?: string
+  brand?: string
+  minPrice?: number
+  maxPrice?: number
+}
 export type TCartItemModify = {
   id: string
   quantity: number

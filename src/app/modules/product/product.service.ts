@@ -6,24 +6,37 @@ const createProductIntoDB = async (payload: TProduct) => {
   return result
 }
 const getAllProductFromDB = async (query: Record<string, unknown>) => {
-  const userQuery = query.product as string | undefined
-  const categoryQuery = query.category as string | undefined
-  if (userQuery) {
+  console.log(query)
+  if (query.category) {
     const queryResult = await Product.find({
-      productName: new RegExp(userQuery, 'i'), // 'i' makes it case-insensitive
+      category: { $regex: query.category as string, $options: 'i' },
     })
     return queryResult
   }
-  if (categoryQuery) {
+  if (query.search) {
+    console.log('first')
     const queryResult = await Product.find({
-      category: new RegExp(categoryQuery, 'i'), // 'i' makes it case-insensitive
+      productName: { $regex: query.search as string, $options: 'i' },
     })
+    console.log('result:', queryResult)
     return queryResult
   } else {
-    console.log('query is ', userQuery)
+    console.log('query is ', query)
     const result = await Product.find()
     return result
   }
+  // const search = ''
+  // const { category, minPrice, maxPrice, brand, sort, order = 'asc' } = query
+  // const filter = {} as any
+  // if (search) filter.productName = { productName: new RegExp(search, 'i') }
+  // if (category) filter.category = { $regex: category, $options: 'i' }
+  // if (minPrice) filter.price = { ...filter.price, $gte: minPrice }
+  // if (maxPrice) filter.price = { ...filter.price, $lte: maxPrice }
+  // if (brand) filter.brand = { $regex: brand, $options: 'i' }
+  // const sortOrder = order === 'asc' ? 1 : -1
+  // const sortField = sort ? { [sort as any]: sortOrder } : { createdAt: -1 }
+  // const result = await Product.find(filter).sort(sortField as any)
+  // return result
 }
 const getSingleProductFromDB = async (id: string) => {
   const result = await Product.findById(id)

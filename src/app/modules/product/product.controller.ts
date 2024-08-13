@@ -110,6 +110,7 @@ const deleteProduct = async (req: Request, res: Response) => {
     })
   }
 }
+
 export const ProductControllers = {
   createProduct,
   getAllProduct,
